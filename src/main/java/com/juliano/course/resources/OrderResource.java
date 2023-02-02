@@ -9,28 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.juliano.course.entities.Product;
-import com.juliano.course.services.ProductService;
+import com.juliano.course.entities.Order;
+import com.juliano.course.services.OrderService;
 
 @RestController
-@RequestMapping(value= "/products")
-public class ProductResources {
-	
-	@Autowired
-	private ProductService service;
-	
+@RequestMapping(value = "/orders")
+public class OrderResource {
+
+	@Autowired 
+	private OrderService service;
+
 	@GetMapping
-	public ResponseEntity<List<Product>> findAll() {
-		
-		List<Product> list =  service.findall();
+	public ResponseEntity<List<Order>> findAll() {
+		List<Order> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Product> findById(@PathVariable Long id) {
-		Product obj = service.findById(id);
+	public ResponseEntity<Order> findById(@PathVariable Long id) {
+		Order obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
-
 }
